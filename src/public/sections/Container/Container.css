@@ -1,0 +1,8 @@
+.container{
+    max-width: 1500px;
+    box-sizing: border-box;
+}
+
+.ramo-container{
+    min-height:calc(100vh - 325px);
+}

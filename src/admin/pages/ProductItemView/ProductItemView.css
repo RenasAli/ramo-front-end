@@ -1,0 +1,29 @@
+.sub-images{
+    margin-top: 20px;
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    flex-direction:row;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    
+
+}
+
+.sub-images img{
+    max-width: 150px;
+    max-height: 150px;
+    padding: 5px;
+
+}
+
+.product-view-container {
+    margin: 25px auto;
+    padding: 20px 20px 15px 20px;
+    border: 1px solid lightgrey;
+    border-radius: 3px;
+    color: var(--color-primary);
+    width: 80%;
+    
+}

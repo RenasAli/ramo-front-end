@@ -1,0 +1,25 @@
+
+.swiper-wrapper{
+    margin-top: var(--size-primary);
+    padding: var(--size-primary);
+    
+}
+
+.swiper-header h4{
+    font-size: calc(var(--font-size-title)*2) ;
+    font-weight: var(--font-blod);
+    color: var(--color-primary);
+}
+
+.swiper-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/*.swiper-items{
+    display: flex ;
+    flex-wrap: wrap;
+}*/
+
+

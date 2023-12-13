@@ -1,0 +1,15 @@
+.category-img{
+    width: 75px;
+    height: 75px;
+}
+.add-new-btn{
+    margin-top: 25px;
+    margin-bottom: 25px;
+    color: var(--color-primary);
+    border: 1px solid var(--color-primary);
+    
+}
+
+.add-new-btn:hover{
+    background-color: var(--color-secondary);
+}

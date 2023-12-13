@@ -1,0 +1,35 @@
+footer{
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    width: 100%;
+    
+}
+.footer-row{
+    padding: 25px;
+    margin: 0px;
+   
+}
+
+.footer-logo{
+    height: 40px;
+    margin-bottom: 15px;
+
+}
+.footer-col-header{
+    margin-bottom: 15px;
+    color: var(--color-secondary);
+    font-weight: var(--font-blod);
+}
+
+.about-os{
+    width: 300px;
+    font-size: 14px;
+}
+.footer-link{
+    color: var(--color-white);
+    text-decoration: none;
+    
+}
+.footer-link:hover{
+    color: var(--color-secondary);
+}

@@ -1,0 +1,22 @@
+
+.card-wrapper{
+    display: 'flex';
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: calc(var(--size-primary));
+    max-width: 350px;
+    height: 400px;
+    
+}
+.card-img{
+    width: 100%;
+    border-radius: 7px;
+}
+.swiper-card-link:hover{
+    opacity: 0.3;
+}
+
+.card-content{
+    text-align: center;
+}

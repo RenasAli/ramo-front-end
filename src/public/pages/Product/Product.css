@@ -1,0 +1,31 @@
+
+.product-content-info{
+    margin: 10px;
+}
+
+.content{
+    max-width: 1000px;
+}
+.product-bg{
+    display: flex;
+    min-height: 100vh;
+}
+.product-content-header{
+    font-size: calc(var(--font-size-title)*2) ;
+    font-weight: var(--font-blod);
+    color: var(--color-primary);
+}
+.product-total{
+    font-size: 15px ;
+    font-weight: 200;
+    
+}
+
+@media(max-width: 767px){
+    
+    .product-bg{
+        display: block;
+    }
+    
+}
+

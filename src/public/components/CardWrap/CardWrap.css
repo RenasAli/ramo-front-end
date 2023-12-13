@@ -1,0 +1,10 @@
+.card-wrapper-bg{
+    margin-top: var(--size-primary);
+    padding: var(--size-primary);
+}
+
+.card-wrapper-items{
+    display: flex ;
+    flex-wrap: wrap;
+}
+

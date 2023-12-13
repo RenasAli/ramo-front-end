@@ -1,0 +1,33 @@
+
+.navbar{
+    background-color: var(--color-white);
+    border-bottom: 0.5px solid var(--color-primary);
+  
+}
+.nav-logo{
+    height: 51px;
+}
+
+.navbar .ramo-nav-link.nav-link{
+    padding-left: var(--size-primary);
+    padding-right: var(--size-primary);
+    color: var(--color-primary);
+    font-weight: var(--font-blod);
+}
+
+.navbar .ramo-nav-link.nav-link:hover{
+    color: var(--color-secondary);
+}
+
+.navbar .ramo-nav-dropdown{
+    padding-left: var(--size-primary);
+    padding-right: var(--size-primary);
+    color: var(--color-primary);
+}
+
+.navbar .ramo-nav-dropdown:hover{
+    color: var(--color-secondary);
+}
+
+
+

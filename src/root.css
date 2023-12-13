@@ -1,0 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap');
+:root{
+    /*    COLORS */
+    --color-primary:#1E2D52;
+    --color-secondary:#82B733;
+    --color-white:#ffff;
+
+    /*    FONTS  */
+    --font-primary: 'Open Sans', Helvetica, Arial, sans-serif;
+    --font-blod: 700;
+    --font-light: 400;
+    --font-size-text: 13px;
+    --font-size-title: 20px;
+    --font-size-section: 48px;
+    /*    SIZE   */
+    --size-primary: 25px;
+    --height-primary: 75px;
+   
+
+}
