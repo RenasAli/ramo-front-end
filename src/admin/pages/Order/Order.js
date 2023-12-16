@@ -10,8 +10,13 @@ const Order = () => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
+    const token = localStorage.getItem('token');
     const settings = {
       method: "GET",
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + token 
+      },
   };
     makeRequest('order', settings)
       .then((data) => setData(data))

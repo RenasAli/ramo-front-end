@@ -14,8 +14,13 @@ const OrderView = () => {
     const {orderNr} = useParams()
 
     useEffect(() => {
+        const token = localStorage.getItem('token');
         const settings = {
           method: "GET",
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + token 
+          },
       };
         makeRequest(`order/order-number/${orderNr}`, settings)
           .then((data) => {
@@ -28,10 +33,12 @@ const OrderView = () => {
       }, [orderNr]);
 
       const EditOrderHandle = async () => {
+        const token = localStorage.getItem('token');
         const settings = {
             method: "PATCH",
             headers: {
               'Content-Type': 'application/json',
+              'Authorization': 'Bearer ' + token 
             },
             body: JSON.stringify(editOrderItem),
         };
