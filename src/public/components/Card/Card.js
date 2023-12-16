@@ -53,31 +53,10 @@ const GroupCard = (props) => {
                 <h4>{props.title}</h4>
             </Link>
        </div>
-
      </div>
     </div>
     </>
   )
 }
-const RoundedCard = (props) => {
-  return (
-    <>
-    <div className='rounded-card-item'>
-     <div className='rounded-card-bg'  >
-       <img className='rounded-card-img' alt='' src={props.img} />
-       <div className='rounded-card-content' >
-            <Link  className='rounded-card-link' alt="" to={props.url}>
-                <h4>{props.title}</h4>
-            </Link>
-            <br/>
-       </div>
-       
-
-     </div>
-    </div>
-    </>
-  )
-}
-
 export default Card
-export {GroupCard,RoundedCard }
+export {GroupCard }

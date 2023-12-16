@@ -4,7 +4,7 @@ import { useParams  } from 'react-router-dom';
 import makeRequest from '../../../data/fetch'
 import './Products.css'
 
-const Products = (props) => {
+const Products = () => {
   const {categoryUrl} = useParams()
   const [data, setData] = useState([]);
   const [categoryName, setCategoryName] = useState();
@@ -28,7 +28,6 @@ const Products = (props) => {
   }, [categoryUrl]);
 
   const productCards = data.map(product =>{
-    
   return <GroupCard key={product.productId} title={product.productName} url={`${product.productUrl}`} img={product.productImg}/>
   })
   

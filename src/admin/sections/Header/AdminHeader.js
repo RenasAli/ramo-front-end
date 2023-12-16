@@ -1,10 +1,13 @@
 import {Link} from 'react-router-dom'
 import './AdminHeader.css'
-
 import logo from '../../../assets/logo/logoV7.png'
 
 
 const AdminHeader = () => {
+    const logOutHandle = () => {
+        localStorage.removeItem('token');
+        window.location.reload()
+    }
     return (
         <nav className="navbar navbar-expand-md " >
             <div className="container">
@@ -41,9 +44,11 @@ const AdminHeader = () => {
                         <li><hr className="ramo-nav-dropdown dropdown-divider" /></li>
                         <li><Link className="ramo-nav-dropdown dropdown-item" to="/">Something else here</Link></li>
                     </ul>
+                    
                     </li>
-                    
-                    
+                    <li className="nav-item">
+                    <Link className="ramo-nav-link nav-link"  onClick={logOutHandle} >Log Ud</Link>
+                    </li>
                 </ul>
                 
                 </div>
