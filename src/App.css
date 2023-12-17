@@ -1,0 +1,7 @@
+.status-success{
+    color: var(--color-secondary);
+}
+
+.status-error{
+    color: brown;
+}

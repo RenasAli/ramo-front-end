@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import {Table, TableHeader, TableBody} from '../../components/index'
 import makeRequest from '../../../data/fetch'
 import {CreateNewProduct} from '../index'
+import { IoEyeSharp } from "react-icons/io5";
 
 
 import './Category.css'
@@ -30,7 +31,9 @@ const Category = () => {
         
       </td>
       <th>{category.categoryName}</th>
-      
+      <td><Link to={`/category/${category.categoryId}`}>
+              <button type="button" className="add-new-btn btn btn-outline-success"><IoEyeSharp/></button>
+            </Link></td>
     </tr>
   })
 

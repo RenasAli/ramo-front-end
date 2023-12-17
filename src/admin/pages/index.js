@@ -1,6 +1,7 @@
 export {default as AdminHome} from './AdminHome/AdminHome'
 export {default as AdminProducts} from './Products/Products'
 export {default as Category} from './Category/Category'
+export {default as CategoryView} from './CategoryView/CategoryView'
 export {default as Order} from './Order/Order'
 export {default as CreateNewCategory} from './CreateNewCategory/CreateNewCategory'
 export {default as CreateNewProduct} from './CreateNewProduct/CreateNewProduct'

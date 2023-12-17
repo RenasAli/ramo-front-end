@@ -9,6 +9,7 @@ import { useParams} from 'react-router-dom';
 
 const OrderView = () => {
     const [data, setData] = useState([]);
+    const [status, setStatus] = useState();
     const [orderItem, setOrderItem] = useState([]);
     const [editOrderItem, setEditOrderItem] = useState({});
     const {orderNr} = useParams()
@@ -45,8 +46,11 @@ const OrderView = () => {
         makeRequest(`order/${data.orderId}`, settings)
         .then((data) => {
             setEditOrderItem(data);
+            setStatus("Ændring er gemt")
         })
-        .catch((error) => console.error('Error fetching order data:', error));
+        .catch((error) => {
+            setStatus("Ændring fejler")
+            console.error('Error fetching order data:', error)});
         
       }
       
@@ -68,6 +72,7 @@ const OrderView = () => {
         <Col>
         <div className="checkout-container container">
             <h4>Bestilling Info</h4>
+            <p className={status === "Ændring er gemt"? "status-success": "status-error"}>{status}</p>
             <p>Ordre nr. {data.orderNumber}</p>
             <p>dato: {data.date} </p>
 
