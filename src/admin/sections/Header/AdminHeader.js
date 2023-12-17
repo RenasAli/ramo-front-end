@@ -9,7 +9,7 @@ const AdminHeader = () => {
         localStorage.removeItem('token');
         window.location.reload()
     }
-    console.log(location.pathname)
+    
     return (
         <>
         {location.pathname !== '/log-in' && 
@@ -30,23 +30,16 @@ const AdminHeader = () => {
                     <Link className="ramo-nav-link nav-link" to="/order">Order</Link>
                     </li>
                     <li className="nav-item">
-                    <Link className="ramo-nav-link nav-link" to="/products/items">Product Items</Link>
-                    </li>
-                    <li className="nav-item">
-                    <Link className="ramo-nav-link nav-link" to="/products">Products</Link>
-                    </li>
-                    <li className="nav-item">
-                    <Link className="ramo-nav-link nav-link" to="/category">Category</Link>
+                    <Link className="ramo-nav-link nav-link" to="/order">VVS-Order</Link>
                     </li>
                     <li className="ramo-nav-link nav-item dropdown">
-                    <Link className="ramo-nav-link nav-link dropdown-toggle" to="/" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        ex.
+                    <Link className="ramo-nav-link nav-link dropdown-toggle"  role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Produkter
                     </Link>
                     <ul className="dropdown-menu">
-                        <li><Link className="ramo-nav-dropdown dropdown-item" to="/">Action</Link></li>
-                        <li><Link className="ramo-nav-dropdown dropdown-item" to="/">Another action</Link></li>
-                        <li><hr className="ramo-nav-dropdown dropdown-divider" /></li>
-                        <li><Link className="ramo-nav-dropdown dropdown-item" to="/">Something else here</Link></li>
+                        <li><Link className="ramo-nav-dropdown dropdown-item" to="/category">Kategory</Link></li>
+                        <li><Link className="ramo-nav-dropdown dropdown-item" to="/products">Produkt</Link></li>
+                        <li><Link className="ramo-nav-dropdown dropdown-item" to="/products/items">Product Varer</Link></li>
                     </ul>
                     
                     </li>
