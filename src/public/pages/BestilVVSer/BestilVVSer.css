@@ -1,0 +1,13 @@
+.order-plumber-container{
+    width: 60%;
+    margin-left:20%;
+    margin-right:20%;
+}
+
+@media(max-width:991px){
+    .order-plumber-container{
+        width: 100%;
+        margin-left:0;
+        margin-right:0;
+    }
+}

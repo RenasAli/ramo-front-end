@@ -28,7 +28,6 @@ const App = () => {
             
             <Router basename='/admin'>
                  <AdminHeader />
-                
                 <AdminContainer>
                    <Routes>
                     <Route path='/' element={<AdminHome/>}/>
