@@ -7,6 +7,7 @@ import { Container, Footer, Header} from './public/sections/index.js'
 import {AdminContainer, AdminHeader} from './admin/sections/index.js'
 import {AdminHome, Order, AdminProducts, Category, CreateNewCategory, CreateNewProduct,CreateProductItem, ProductItems, ProductItemView, OrderView, LogIn} from './admin/pages/index'
 const App = () => {
+    
     return (
         <>
             <Router basename='/app'>
@@ -26,7 +27,7 @@ const App = () => {
             </Router>
             
             <Router basename='/admin'>
-                {window.location.pathname !== '/admin/log-in' && <AdminHeader />}
+                 <AdminHeader />
                 
                 <AdminContainer>
                    <Routes>

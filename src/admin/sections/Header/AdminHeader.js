@@ -1,15 +1,19 @@
 import {Link} from 'react-router-dom'
 import './AdminHeader.css'
 import logo from '../../../assets/logo/logoV7.png'
-
+import { useLocation } from 'react-router-dom';
 
 const AdminHeader = () => {
+    const location = useLocation()
     const logOutHandle = () => {
         localStorage.removeItem('token');
         window.location.reload()
     }
+    console.log(location.pathname)
     return (
-        <nav className="navbar navbar-expand-md " >
+        <>
+        {location.pathname !== '/log-in' && 
+        <nav className="admin-nav navbar navbar-expand-md " >
             <div className="container">
                 <Link className="ramo-navbar-brand navbar-brand" to="/">
                 <img className="logo" src={logo} alt="Site Logo"/>
@@ -53,8 +57,8 @@ const AdminHeader = () => {
                 
                 </div>
             </div>
-    </nav>
-      
+    </nav>}
+      </>
     )
 }
 

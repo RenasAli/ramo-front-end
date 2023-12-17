@@ -2,6 +2,7 @@ import './LogIn.css'
 import makeRequest from '../../../data/fetch'
 import { useState} from 'react';
 import { useNavigate } from 'react-router-dom';
+import { FaUserCircle } from "react-icons/fa";
 
 
 const LogIn = () => {
@@ -27,6 +28,7 @@ const LogIn = () => {
     .catch((error) => console.error('Error fetching data:', error));
     
 }
+  
 
 
 
@@ -39,9 +41,8 @@ const LogIn = () => {
             <div className="card my-5">
             <h4 className='text-center text-dark mt-5'> Ramo MultiService Log In</h4>
               <div className="card-body cardbody-color p-lg-5">
-                <div className="text-center">
-                  <img src="https://cdn.pixabay.com/photo/2016/03/31/19/56/avatar-1295397__340.png" className="img-fluid profile-image-pic img-thumbnail rounded-circle my-3"
-                    width="200px" alt="profile"/>
+                <div className="text-center user-Icon">
+                <FaUserCircle />
                 </div>
                 <div className="mb-3">
                   <input type="text" className="form-control"  aria-describedby="emailHelp"
