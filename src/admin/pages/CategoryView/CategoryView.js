@@ -1,4 +1,4 @@
-import React from 'react'
+import  './CategoryView.css'
 import { useEffect, useState } from 'react';
 import makeRequest from '../../../data/fetch';
 import { useParams} from 'react-router-dom';
