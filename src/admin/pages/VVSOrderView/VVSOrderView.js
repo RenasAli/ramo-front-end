@@ -1,17 +1,13 @@
-import  './OrderView.css'
+import './VVSOrderView.css'
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import {Table, TableHeader, TableBody} from '../../components/index';
 import { useEffect, useState } from 'react';
 import makeRequest from '../../../data/fetch';
 import { useParams} from 'react-router-dom';
-
-
-const OrderView = () => {
+const VVSOrderView = () => {
     const [data, setData] = useState([]);
-    const [orderItem, setOrderItem] = useState([]);
     const [editOrderItem, setEditOrderItem] = useState({});
-    const {orderNr} = useParams()
+    const {vvsOrderNr} = useParams()
 
     useEffect(() => {
         const token = localStorage.getItem('token');
@@ -22,15 +18,13 @@ const OrderView = () => {
             'Authorization': 'Bearer ' + token 
           },
       };
-        makeRequest(`order/order-number/${orderNr}`, settings)
+        makeRequest(`plumber/order-number/${vvsOrderNr}`, settings)
           .then((data) => {
             setData(data)
-            const orderItems = data.orderItems
-            setOrderItem(orderItems)
         })
           .catch((error) => console.error('Error fetching data:', error));
           
-      }, [orderNr]);
+      }, [vvsOrderNr]);
 
       const EditOrderHandle = async () => {
         const token = localStorage.getItem('token');
@@ -42,28 +36,20 @@ const OrderView = () => {
             },
             body: JSON.stringify(editOrderItem),
         };
-        makeRequest(`order/${data.orderId}`, settings)
+        makeRequest(`plumber/${data.orderId}`, settings)
         .then((data) => {
             setEditOrderItem(data);
         })
         .catch((error) => console.error('Error fetching order data:', error));
         
       }
+
+
       
-    
-    const displayOrderItems = orderItem.map(orderItem =>{
-        return <tr key={orderItem.id}>
-                    <td>{orderItem.orderItemNumber}</td>
-                    <td>{orderItem.orderItemTitle}</td>
-                    <td>{orderItem.orderItemQuantity}</td>
-                    <td>{orderItem.orderItemPrice}</td>
-                    <td>{orderItem.orderItemTotalPrice}</td>
-                </tr>
-    })
-  
+
   return (
-    <>
-     <Row>
+   <>
+   <Row>
         
         <Col>
         <div className="checkout-container container">
@@ -79,11 +65,6 @@ const OrderView = () => {
             <label ><i className="fa fa-user"></i> Fulde navn</label>
             <input type="text" className='checkout-input' name="firstname" defaultValue={data.customerName} onChange={(e) => setEditOrderItem({ ...editOrderItem, customerName: e.target.value})}/>
 
-            <label ><i className="fa fa-user"></i> Beløbet</label>
-            <input type="number" className='checkout-input' defaultValue={data.orderTotalAmount}   name="amount" onChange={(e) => setEditOrderItem({ ...editOrderItem, orderTotalAmount: e.target.value})} disabled readOnly />
-
-            <label ><i className="fa fa-user"></i> Moms</label>
-            <input type="number" className='checkout-input' name="amount"  defaultValue={data.vat} onChange={(e) => setEditOrderItem({ ...editOrderItem, vat: e.target.value})}disabled readOnly/>
 
             <div className="row">
                 <div className="col-50">
@@ -114,33 +95,14 @@ const OrderView = () => {
                 </div>
             </div>
 
-            <label><i className="fa fa-address-card-o"></i> Kommentar</label>
-            <textarea type="text" className='checkout-input' name="comment" defaultValue={data.comment !== null ? data.comment: ""} onChange={(e) => setEditOrderItem({ ...editOrderItem, comment: e.target.value})}/>
+            <label><i className="fa fa-address-card-o"></i> Beskrivelse</label>
+            <textarea type="text" className='checkout-input' name="description" defaultValue={data.description !== null ? data.description: ""} onChange={(e) => setEditOrderItem({ ...editOrderItem, description: e.target.value})}/>
 
         </div>
         </Col>
         <Col> 
         <div className="checkout-container container">
             <h4>Bestilling Status</h4>
-
-            <label htmlFor="basic-file" className="form-label">Kunden betaler med</label>
-            <select className="form-control form-control-lg" onChange={(e) => setEditOrderItem({ ...editOrderItem, paymentMethod: e.target.value})}>
-                {data.paymentMethod === 'MobilePay' ? <option value='MobilePay' selected>MobilePay</option> :
-                 <option value='MobilePay' >MobilePay</option>}
-
-                {data.paymentMethod === 'Faktura' ? <option value='Faktura' selected>Faktura</option> :
-                 <option value='Faktura' >Faktura</option>}
-            </select>
-
-            <label htmlFor="basic-file" className="form-label">Betaling Status</label>
-            <select className="form-control form-control-lg" onChange={(e) => setEditOrderItem({ ...editOrderItem, paymentStatus: e.target.value})}>
-            {data.paymentStatus === 'false' ? <option value='false' selected>Ikke Betalt</option> :
-                 <option value='false' >Ikke Betalt</option>}
-
-            {data.paymentStatus === 'true' ? <option value='true' selected>Betalt</option> :
-                 <option value='true'>Betalt</option>}
-            
-            </select>
 
             <label htmlFor="basic-file" className="form-label">Ordre Status</label>
             <select className="form-control form-control-lg" onChange={(e) => setEditOrderItem({ ...editOrderItem, orderStatus: e.target.value})}>
@@ -163,29 +125,12 @@ const OrderView = () => {
             
             <button type="submit" onClick={EditOrderHandle} className="checkout-submit-btn btn" > Gem ændring</button>
         </div>
-        <div className="checkout-container container">
-            <h4>Bestilling Vare</h4>
-            <Table>
-
-                <TableHeader>
-                    <th scope="col">Nr.</th>
-                    <th scope="col">Navn</th>
-                    <th scope="col">Antal</th>
-                    <th scope="col">Pris</th>
-                    <th scope="col">Toatal</th>
-                    <th scope="col">xxx </th>
-                </TableHeader>
-
-                <TableBody>
-                    {displayOrderItems}
-                </TableBody> 
-            </Table>
-        </div>
+        
         
         </Col>
       </Row>
-    </>
+   </>
   )
 }
 
-export default OrderView
+export default VVSOrderView

@@ -10,3 +10,4 @@ export {default as CreateProductItem} from './CreateProductItem/CreateProductIte
 export {default as OrderView} from './OrderView/OrderView'
 export {default as LogIn} from './LogIn/LogIn'
 export {default as VVSOrder} from './VVSOrder/VVSOrder'
+export {default as VVSOrderView} from './VVSOrderView/VVSOrderView'

@@ -5,7 +5,7 @@ import './root.css'
 import { Home,BestilVVSer ,OmOs, Products, Product, ProductView, Checkout } from './public/pages/index.js'
 import { Container, Footer, Header} from './public/sections/index.js'
 import {AdminContainer, AdminHeader} from './admin/sections/index.js'
-import {AdminHome, Order, AdminProducts, Category, CreateNewCategory, CreateNewProduct,CreateProductItem, ProductItems, ProductItemView, OrderView, LogIn, VVSOrder} from './admin/pages/index'
+import {AdminHome, Order, AdminProducts, Category, CreateNewCategory, CreateNewProduct,CreateProductItem, ProductItems, ProductItemView, OrderView, LogIn, VVSOrder, VVSOrderView} from './admin/pages/index'
 const App = () => {
     
     return (
@@ -35,6 +35,7 @@ const App = () => {
                     <Route path='/order' element={<Order/>}/>
                     <Route path='/vvs-order' element={<VVSOrder/>}/>
                     <Route path='/order/:orderNr' element={<OrderView/>}/>
+                    <Route path='/vvs-order/:vvsOrderNr' element={<VVSOrderView/>}/>
                     <Route path='/products/items' element={<ProductItems/>}/>
                     <Route path='/products/items/view/:productItemNumber' element={<ProductItemView/>}/>
                     <Route path='/products/items/add-new-item' element={<CreateProductItem/>}/>

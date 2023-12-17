@@ -30,7 +30,7 @@ const AdminHeader = () => {
                     <Link className="ramo-nav-link nav-link" to="/order">Order</Link>
                     </li>
                     <li className="nav-item">
-                    <Link className="ramo-nav-link nav-link" to="/order">VVS-Order</Link>
+                    <Link className="ramo-nav-link nav-link" to="/vvs-order">VVS-Order</Link>
                     </li>
                     <li className="ramo-nav-link nav-item dropdown">
                     <Link className="ramo-nav-link nav-link dropdown-toggle"  role="button" data-bs-toggle="dropdown" aria-expanded="false">
