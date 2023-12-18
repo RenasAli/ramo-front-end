@@ -1,10 +1,9 @@
-import './ProductItems.css'
-import {Link} from 'react-router-dom'
+import './ProductItems.css';
+import {Link} from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import {Table, TableHeader, TableBody} from '../../components/index'
-import makeRequest from '../../../data/fetch'
+import {Table, TableHeader, TableBody} from '../../components/index';
+import makeRequest from '../../../data/fetch';
 import { IoEyeSharp } from "react-icons/io5";
-
 const ProductItems = () => {
     const [data, setData] = useState([]);
 
@@ -17,6 +16,7 @@ const ProductItems = () => {
           .catch((error) => console.error('Error fetching data:', error));
     }, []);
 
+    
     let counter = 0;
     const productItemsData = data.map(productItems =>{
         counter++;
@@ -31,6 +31,7 @@ const ProductItems = () => {
               <button type="button" className="add-new-btn btn btn-outline-success"><IoEyeSharp/></button>
             </Link>
             </th>
+        
         </tr>
     })
   return (

@@ -4,8 +4,6 @@ import {Table, TableHeader, TableBody} from '../../components/index'
 import makeRequest from '../../../data/fetch'
 import {CreateNewProduct} from '../index'
 import { IoEyeSharp } from "react-icons/io5";
-
-
 import './Category.css'
 
 const Category = () => {
