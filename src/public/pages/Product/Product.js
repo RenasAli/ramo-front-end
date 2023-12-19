@@ -49,8 +49,6 @@ const Product = () => {
     const settings = {
       method: "GET",
     };
-    
-    
     makeRequest(`category/products`, settings)
       .then((data) => {
         const filteredData = data.filter(item => item.productUrl === productUrl);

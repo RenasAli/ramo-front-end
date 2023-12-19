@@ -41,6 +41,7 @@ const ProductsView = () => {
         makeRequest(`category/products/${data.productId}`, settings)
         .then((data) => {
             setEditProduct(data);
+            
             setStatus("Ændring er gemt")
         })
         .catch((error) => {

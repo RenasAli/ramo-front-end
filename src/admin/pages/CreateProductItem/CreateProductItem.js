@@ -68,69 +68,71 @@ const CreateProductItem = () => {
     });
   return (
     <>
-    <div className="col-md-6">
-        <label htmlFor="inputtitle" className="form-label">Titel</label>
-        <input type="text" className="form-control"  onChange={(e) => setPostData({ ...postData, name: e.target.value })} />
-    </div>
-    <div className="col-md-6">
-        <label htmlFor="inputtitle" className="form-label">Brand</label>
-        <input type="text" className="form-control"  onChange={(e) => setPostData({ ...postData, brand: e.target.value })} />
-    </div>
-    <div className="col-md-6">
-        <label htmlFor="inputtitle" className="form-label">Farve</label>
-        <input type="text" className="form-control"  onChange={(e) => setPostData({ ...postData, color: e.target.value })} />
-    </div>
-    <div className="col-md-6">
-        <label htmlFor="inputtitle" className="form-label">Pris</label>
-        <input type="number" className="form-control"  onChange={(e) => setPostData({ ...postData, price: e.target.value })} />
-    </div>
-    <div className="col-md-6">
-        <label htmlFor="inputtitle" className="form-label">Type</label>
-        <input type="text" className="form-control"  onChange={(e) => setPostData({ ...postData, type: e.target.value })} />
-    </div>
-    <div className="col-md-6">
-        <label htmlFor="inputtitle" className="form-label">Serie</label>
-        <input type="text" className="form-control"  onChange={(e) => setPostData({ ...postData, serie: e.target.value })} />
-    </div>
-    <div className="col-md-6">
-        <label htmlFor="inputtitle" className="form-label">Højde</label>
-        <input type="number" className="form-control"  onChange={(e) => setPostData({ ...postData, hight: e.target.value })} />
-    </div>
-    <div className="col-md-6">
-        <label htmlFor="inputtitle" className="form-label">Bredde</label>
-        <input type="number" className="form-control"  onChange={(e) => setPostData({ ...postData, width: e.target.value })} />
-    </div>
-    <div className="col-md-6">
-        <label htmlFor="inputtitle" className="form-label">Dybde</label>
-        <input type="number" className="form-control"  onChange={(e) => setPostData({ ...postData, depth: e.target.value })} />
-    </div>
-    <div className="col-md-8">
-        <label htmlFor="inputCategoryDescription" className="form-label">Beskrivelse</label>
-        <textarea className="form-control"  rows='9' onChange={(e) => setPostData({ ...postData, description: e.target.value })} />
-    </div>
-    <div className="col-md-8">
-        <label htmlFor="inputCategoryDescription" className="form-label">Info</label>
-        <textarea className="form-control"  rows='9' onChange={(e) => setPostData({ ...postData, info: e.target.value })} />
-    </div>
-    <div className="col-md-6">
-        <label htmlFor="basic-url" className="form-label">URL</label>
-        <input type="text" className="form-control"   onChange={(e) => setPostData({ ...postData, url: e.target.value })}/>
-    </div>
-    <div className="col-md-6">
-        <label htmlFor="basic-file" className="form-label">Produkt Navn</label>
-        <select className="form-control form-control-lg" onChange={(e) => setPostData({ ...postData, productId: e.target.value })}>
-            <option >Vælge en Produkt Navn</option>
-            {productList}
-        </select>
-    </div>
-    <div className="col-md-3">
-        <label htmlFor="basic-file" className="form-label">Billede</label>
-        <input type="file"  className="form-control" accept='image/*' onChange={handleChange}/>
-        <button onClick={handleUpload} className="add-new-btn btn btn-outline-success">OPRET</button>
-    </div>
-    
-    <div className="col-12">
-        <button onClick={postHandle} className="add-new-btn btn btn-outline-success">OPRET</button>
+    <div className="checkout-container">
+        <div className="col-md-6">
+            <label htmlFor="inputtitle" className="form-label">Titel</label>
+            <input type="text" className="form-control"  onChange={(e) => setPostData({ ...postData, name: e.target.value })} />
+        </div>
+        <div className="col-md-6">
+            <label htmlFor="inputtitle" className="form-label">Brand</label>
+            <input type="text" className="form-control"  onChange={(e) => setPostData({ ...postData, brand: e.target.value })} />
+        </div>
+        <div className="col-md-6">
+            <label htmlFor="inputtitle" className="form-label">Farve</label>
+            <input type="text" className="form-control"  onChange={(e) => setPostData({ ...postData, color: e.target.value })} />
+        </div>
+        <div className="col-md-6">
+            <label htmlFor="inputtitle" className="form-label">Pris</label>
+            <input type="number" className="form-control"  onChange={(e) => setPostData({ ...postData, price: e.target.value })} />
+        </div>
+        <div className="col-md-6">
+            <label htmlFor="inputtitle" className="form-label">Type</label>
+            <input type="text" className="form-control"  onChange={(e) => setPostData({ ...postData, type: e.target.value })} />
+        </div>
+        <div className="col-md-6">
+            <label htmlFor="inputtitle" className="form-label">Serie</label>
+            <input type="text" className="form-control"  onChange={(e) => setPostData({ ...postData, serie: e.target.value })} />
+        </div>
+        <div className="col-md-6">
+            <label htmlFor="inputtitle" className="form-label">Højde</label>
+            <input type="number" className="form-control"  onChange={(e) => setPostData({ ...postData, hight: e.target.value })} />
+        </div>
+        <div className="col-md-6">
+            <label htmlFor="inputtitle" className="form-label">Bredde</label>
+            <input type="number" className="form-control"  onChange={(e) => setPostData({ ...postData, width: e.target.value })} />
+        </div>
+        <div className="col-md-6">
+            <label htmlFor="inputtitle" className="form-label">Dybde</label>
+            <input type="number" className="form-control"  onChange={(e) => setPostData({ ...postData, depth: e.target.value })} />
+        </div>
+        <div className="col-md-8">
+            <label htmlFor="inputCategoryDescription" className="form-label">Beskrivelse</label>
+            <textarea className="form-control"  rows='9' onChange={(e) => setPostData({ ...postData, description: e.target.value })} />
+        </div>
+        <div className="col-md-8">
+            <label htmlFor="inputCategoryDescription" className="form-label">Info</label>
+            <textarea className="form-control"  rows='9' onChange={(e) => setPostData({ ...postData, info: e.target.value })} />
+        </div>
+        <div className="col-md-6">
+            <label htmlFor="basic-url" className="form-label">URL</label>
+            <input type="text" className="form-control"   onChange={(e) => setPostData({ ...postData, url: e.target.value })}/>
+        </div>
+        <div className="col-md-6">
+            <label htmlFor="basic-file" className="form-label">Produkt Navn</label>
+            <select className="form-control form-control-lg" onChange={(e) => setPostData({ ...postData, productId: e.target.value })}>
+                <option >Vælge en Produkt Navn</option>
+                {productList}
+            </select>
+        </div>
+        <div className="col-md-3">
+            <label htmlFor="basic-file" className="form-label">Billede</label>
+            <input type="file"  className="form-control" accept='image/*' onChange={handleChange}/>
+            <button onClick={handleUpload} className="add-new-btn btn btn-outline-success">OPRET</button>
+        </div>
+        
+        <div className="col-12">
+            <button onClick={postHandle} className="add-new-btn btn btn-outline-success">OPRET</button>
+        </div>
     </div>
    </>
   )
