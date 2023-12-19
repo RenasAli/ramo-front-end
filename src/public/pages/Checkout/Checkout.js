@@ -4,7 +4,9 @@ import mobilePayLogo from '../../../assets/logo/mobilepay-logo.jpg'
 import invoiceLIcon from '../../../assets/logo/Factura.png'
 import { useSelector , useDispatch} from 'react-redux';
 import makeRequest from '../../../data/fetch'
-import {getTotalProducts, decrementQuantity, removeFromCart, incrementQuantity} from '../../../redux/cartReducer'
+import {getTotalProducts, decrementQuantity, removeFromCart, incrementQuantity} from '../../../redux/cartReducer';
+import Form from 'react-bootstrap/Form';
+
 
 
 const Checkout = () => {
@@ -13,7 +15,7 @@ const Checkout = () => {
     const [postDataToOrder, setPostDataToOrder] = useState({});
     const [createdOrderId, setCreatedOrderId] = useState();
     const [postDataToOrderItem, setPostDataToOrderItem] = useState({});
-
+    const [validated, setValidated] = useState(false);
     const products = useSelector( (state) =>  state.cart.products);
     const totalAmount = useSelector(state => state.cart.productsTotalAmount);
     const totalQuantity = useSelector(state => state.cart.productsTotalQuantity);
@@ -23,7 +25,15 @@ const Checkout = () => {
         setTotalVAT(totalAmount - (totalAmount * 80) / 100)
       }, [ dispatch, products, totalAmount]);
 
-
+      const handleSubmit = (event) => {
+        const form = event.currentTarget;
+        if (form.checkValidity() === false) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+        submitOrderHandle()
+        setValidated(true);
+      };
 
       const postToOrderHandle = async () => {
         const settings = {
@@ -139,75 +149,74 @@ const Checkout = () => {
 
   return (
     <>
-    
-    
-
     <div className="row">
         <div className="col-60">
             <div className="checkout-container container">
-                <div className="row">
-                <div className="col-50">
-                    <h3>FAKTURERINGSADRESSE</h3>
-                    <label ><i className="fa fa-user"></i> Evt. firma</label>
-                    <input type="text" className='checkout-input' name="company" onChange={(e) => setPostDataToOrder({ ...postDataToOrder, customerCompanyName: e.target.value})} />
-
-                    <label ><i className="fa fa-user"></i> Fulde navn</label>
-                    <input type="text" className='checkout-input' name="firstname" onChange={(e) => setPostDataToOrder({ ...postDataToOrder, customerName: e.target.value})}/>
-
+                <Form onSubmit={handleSubmit} validated={validated} noValidate >
                     <div className="row">
-                    <div className="col-50">
-                        <label >Email</label>
-                        <input type="email" className='checkout-input' name="email" onChange={(e) => setPostDataToOrder({ ...postDataToOrder, customerEmail: e.target.value})}/>
-                    </div>
+                        <div className="col-50">
+                            <h3>FAKTURERINGSADRESSE</h3>
+                            <label ><i className="fa fa-user"></i> Evt. firma</label>
+                            <input type="text" className='checkout-input' name="company" onChange={(e) => setPostDataToOrder({ ...postDataToOrder, customerCompanyName: e.target.value})} />
 
-                    <div className="col-50">
-                        <label >Tlf.</label>
-                        <input type="tel" className='checkout-input' name="phone" onChange={(e) => setPostDataToOrder({ ...postDataToOrder, customerTlf: e.target.value})}/>
-                    </div>
+                            <label ><i className="fa fa-user"></i> Fulde navn</label>
+                            <input type="text" className='checkout-input form-control' name="firstname" onChange={(e) => setPostDataToOrder({ ...postDataToOrder, customerName: e.target.value})} required/>
 
-                    </div>
+                            <div className="row">
+                            <div className="col-50">
+                                <label >Email</label>
+                                <input type="email" className='checkout-input form-control' name="email" onChange={(e) => setPostDataToOrder({ ...postDataToOrder, customerEmail: e.target.value})} required/>
+                            </div>
 
-                    <label><i className="fa fa-address-card-o"></i> Adresse</label>
-                    <input type="text" className='checkout-input' name="address" onChange={(e) => setPostDataToOrder({ ...postDataToOrder, address: e.target.value})}/>
+                            <div className="col-50">
+                                <label >Tlf.</label>
+                                <input type="tel" className='checkout-input form-control' name="phone" onChange={(e) => setPostDataToOrder({ ...postDataToOrder, customerTlf: e.target.value})} required/>
+                            </div>
 
-                    <div className="row">
-                    <div className="col-50">
-                        <label >By</label>
-                        <input type="text" className='checkout-input' name="city" onChange={(e) => setPostDataToOrder({ ...postDataToOrder, city: e.target.value})}/>
-                    </div>
+                            </div>
 
-                    <div className="col-50">
-                        <label >Post nr.</label>
-                        <input type="number" className='checkout-input' name="zip" onChange={(e) => setPostDataToOrder({ ...postDataToOrder, zipCode: e.target.value})}/>
-                    </div>
+                            <label><i className="fa fa-address-card-o"></i> Adresse</label>
+                            <input type="text" className='checkout-input form-control' name="address" onChange={(e) => setPostDataToOrder({ ...postDataToOrder, address: e.target.value})} required/>
 
-                    </div>
-                    <h3>VÆLG EN BETALINGSMETODE</h3>
+                            <div className="row">
+                            <div className="col-50">
+                                <label >By</label>
+                                <input type="text" className='checkout-input form-control' name="city" onChange={(e) => setPostDataToOrder({ ...postDataToOrder, city: e.target.value})} required/>
+                            </div>
 
-                    <div className='payment-options'>
-                        <div className='payment-option'>
-                            <input className="form-check-input" type="radio" name="radio" value={'MobilePay'} id="mobilepay" onChange={(e) => setPostDataToOrder({ ...postDataToOrder, paymentMethod: e.target.value })}  />
-                            <label htmlFor="MobilePay">
-                            <img className='payment-options-img' alt='' src={mobilePayLogo}/>
-                            </label>
+                            <div className="col-50">
+                                <label >Post nr.</label>
+                                <input type="number" className='checkout-input form-control' name="zip" onChange={(e) => setPostDataToOrder({ ...postDataToOrder, zipCode: e.target.value})} required/>
+                            </div>
+
+                            </div>
+                            <h3>VÆLG EN BETALINGSMETODE</h3>
+
+                            <div className='payment-options'>
+                                <div className='payment-option'>
+                                    <input className="form-check-input" type="radio" name="radio" value={'MobilePay'} id="mobilepay" onChange={(e) => setPostDataToOrder({ ...postDataToOrder, paymentMethod: e.target.value })}  />
+                                    <label htmlFor="MobilePay">
+                                    <img className='payment-options-img' alt='' src={mobilePayLogo}/>
+                                    </label>
+                                </div>
+
+                                <div className='payment-option'>
+                                    <input className="form-check-input" type="radio" name="radio" value={'Faktura'} id="faktura" onChange={(e) => setPostDataToOrder({ ...postDataToOrder, paymentMethod: e.target.value })}  />
+                                    <label htmlFor="Faktura">
+                                    <img alt='' className='payment-options-img' src={invoiceLIcon}/>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <label><i className="fa fa-address-card-o"></i> Kommentar</label>
+                            <textarea type="text" maxLength="500" className='checkout-input' name="comment" onChange={(e) => setPostDataToOrder({ ...postDataToOrder, comment: e.target.value })} />
+
                         </div>
-
-                        <div className='payment-option'>
-                            <input className="form-check-input" type="radio" name="radio" value={'Faktura'} id="faktura" onChange={(e) => setPostDataToOrder({ ...postDataToOrder, paymentMethod: e.target.value })}  />
-                            <label htmlFor="Faktura">
-                            <img alt='' className='payment-options-img' src={invoiceLIcon}/>
-                            </label>
-                        </div>
+                    
                     </div>
-
-                    <label><i className="fa fa-address-card-o"></i> Kommentar</label>
-                    <textarea type="text" maxLength="500" className='checkout-input' name="comment" onChange={(e) => setPostDataToOrder({ ...postDataToOrder, comment: e.target.value })} />
-
-                </div>
-                </div>
                 
-                <button type="submit" onClick={submitOrderHandle} className="checkout-submit-btn btn" >Bekræfte Ordre</button>
-
+                    <button type="submit" className="checkout-submit-btn btn" >Bekræfte Ordre</button>
+                </Form>
             </div>
         </div>
 

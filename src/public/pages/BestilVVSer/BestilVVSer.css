@@ -11,3 +11,7 @@
         margin-right:0;
     }
 }
+.checkout-input:focus-visible {
+    outline:none;
+    box-shadow: none;
+}
