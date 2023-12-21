@@ -6,6 +6,7 @@ import makeRequest from '../../../data/fetch';
 import { IoEyeSharp } from "react-icons/io5";
 const ProductItems = () => {
     const [data, setData] = useState([]);
+    const [searchResult, setSearchResult] = useState([]);
 
     useEffect(() => {
         const settings = {
@@ -15,10 +16,25 @@ const ProductItems = () => {
           .then((data) => setData(data))
           .catch((error) => console.error('Error fetching data:', error));
     }, []);
-
+    useEffect(() => {
+      setSearchResult(data)
+    }, [data]);
+  
+    const handleInputOnChange = (e) =>{
+      const filter = data.filter((item) => { 
+        for (const key in item){
+          if(item[key] &&
+          String(item[key]).toLowerCase().includes(e.target.value)){
+              return true
+          }
+        }
+        return false
+      })
+      setSearchResult(filter)
+    }
     
     let counter = 0;
-    const productItemsData = data.map(productItems =>{
+    const productItemsData = searchResult.map(productItems =>{
         counter++;
         return <tr key={productItems.id} >
         <th>{counter}</th>
@@ -39,6 +55,10 @@ const ProductItems = () => {
     <Link to="/products/items/add-new-item">
     <button type="button" className="add-new-btn btn btn-outline-success">Add New Items</button>
     </Link>
+    <div className="order-search-bar" >
+        <input className="search-bar-input"  placeholder="Søg efter ordre" aria-label="Search" onChange={handleInputOnChange} />
+        
+    </div>
     <Table>
       <TableHeader>
                 <th scope="col">#</th>

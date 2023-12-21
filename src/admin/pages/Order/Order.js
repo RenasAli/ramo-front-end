@@ -8,6 +8,7 @@ import { IoEyeSharp } from "react-icons/io5";
 
 const Order = () => {
   const [data, setData] = useState([]);
+  const [searchResult, setSearchResult] = useState([]);
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -24,8 +25,26 @@ const Order = () => {
       
   }, []);
 
-  const ordersData = data.map(order =>{
+  useEffect(() => {
+    setSearchResult(data)
+  }, [data]);
+
+  const handleInputOnChange = (e) =>{
+    const filter = data.filter((item) => { 
+      for (const key in item){
+        if(item[key] &&
+        String(item[key]).toLowerCase().includes(e.target.value)){
+            return true
+        }
+      }
+      return false
+    })
+    setSearchResult(filter)
+  }
     
+  
+
+  const ordersData = searchResult.map(order =>{
     return <tr key={order.orderId} >
       <th> {order.orderNumber}</th>
         <td>{order.customerName}</td>
@@ -40,7 +59,10 @@ const Order = () => {
   })
   return (
     <>
-
+    <div className="order-search-bar" >
+        <input className="search-bar-input"  placeholder="Søg efter ordre" aria-label="Search" onChange={handleInputOnChange} />
+        
+    </div>
     <Table>
       <TableHeader>
                 <th scope="col">Order Nr.</th>

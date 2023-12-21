@@ -7,6 +7,7 @@ import { IoEyeSharp } from "react-icons/io5";
 
 const VVSOrder = () => {
     const [data, setData] = useState([]);
+    const [searchResult, setSearchResult] = useState([]);
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -22,9 +23,24 @@ const VVSOrder = () => {
       .catch((error) => console.error('Error fetching data:', error));
       
   }, []);
-  
 
-  const VVSOrdersData = data.map(VVSOrder =>{
+  useEffect(() => {
+    setSearchResult(data)
+  }, [data]);
+
+const handleInputOnChange = (e) =>{
+    const filter = data.filter((item) => { 
+      for (const key in item){
+        if(item[key] &&
+        String(item[key]).toLowerCase().includes(e.target.value)){
+            return true
+        }
+      }
+      return false
+    })
+    setSearchResult(filter)
+  }
+  const VVSOrdersData = searchResult.map(VVSOrder =>{
     
     return <tr key={VVSOrder.orderId} >
       <th> {VVSOrder.orderNumber}</th>
@@ -40,6 +56,9 @@ const VVSOrder = () => {
   })
   return (
     <>
+    <div className="order-search-bar" >
+        <input className="search-bar-input"  placeholder="Søg efter ordre" aria-label="Search" onChange={handleInputOnChange} />
+    </div>
     <Table>
       <TableHeader>
                 <th scope="col">Order Nr.</th>
