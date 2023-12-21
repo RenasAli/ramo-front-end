@@ -2,10 +2,13 @@ import './BestilVVSer.css'
 import {useState } from 'react';
 import makeRequest from '../../../data/fetch'
 import Form from 'react-bootstrap/Form';
+import Modal from 'react-bootstrap/Modal';
+import {Link} from 'react-router-dom';
 
 const BestilVVSer = () => {
   const [postData, setPostData] = useState({});
   const [validated, setValidated] = useState(false);
+  const [modalShow, setModalShow] = useState(false);
 
 
   const postHandle = () => {
@@ -20,7 +23,7 @@ const BestilVVSer = () => {
     makeRequest('plumber', settings)
     .then((data) => {
       setPostData(data) 
-        
+      setModalShow(true)  
     })
     .catch((error) => console.error('Error fetching order data:', error));
     
@@ -31,12 +34,39 @@ const BestilVVSer = () => {
       event.preventDefault();
       event.stopPropagation();
     }
+    event.preventDefault();
     postHandle()
     setValidated(true);
   };
 
   return (
     <>
+    <Modal size="lg" aria-labelledby="contained-modal-title-vcenter" centered 
+    show={modalShow} >
+      <Modal.Body>
+        <h4 className='item-title'>Kære {postData.customerName} </h4>
+        <h4 className='item-title'>Din bestilling er Bekræftet. </h4>
+        <p className='item-description'>
+          <br/>
+          Bestilling nr: {postData.orderNumber}<br/>
+          Tlf: {postData.customerTlf}<br/>
+          Email: {postData.customerEmail}<br/>
+          Adresse: {postData.address}, {postData.zipCode}  {postData.city}<br/>
+          <hr/>
+          Vi vil Kontakt dig inden for 24 timer.<br/>
+          Hvis du har spørgsmål, kan du kontakte os på 28 19 96 97<br/>
+          eller send en mail til Ramo@ramo-ms.dk <br/>
+          Fortsæt en god dag.<br/>
+          Mvh Ramo MultiService<br/>
+        </p>
+      </Modal.Body>
+      <Modal.Footer>
+        
+        <Link to='/'>
+          <button type="button" onClick={()=>setModalShow(false)} className="add-order-btn btn btn-outline-success">Luk</button>
+        </Link>
+      </Modal.Footer>
+    </Modal>
       <Form onSubmit={handleSubmit} validated={validated} noValidate >
         <div className="col-60">
             <div className="checkout-container order-plumber-container">

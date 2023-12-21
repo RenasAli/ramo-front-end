@@ -4,8 +4,10 @@ import mobilePayLogo from '../../../assets/logo/mobilepay-logo.jpg'
 import invoiceLIcon from '../../../assets/logo/Factura.png'
 import { useSelector , useDispatch} from 'react-redux';
 import makeRequest from '../../../data/fetch'
-import {getTotalProducts, decrementQuantity, removeFromCart, incrementQuantity} from '../../../redux/cartReducer';
+import {getTotalProducts, decrementQuantity, removeFromCart, incrementQuantity, resetCart} from '../../../redux/cartReducer';
 import Form from 'react-bootstrap/Form';
+import Modal from 'react-bootstrap/Modal';
+import {Link} from 'react-router-dom';
 
 
 
@@ -16,6 +18,7 @@ const Checkout = () => {
     const [createdOrderId, setCreatedOrderId] = useState();
     const [postDataToOrderItem, setPostDataToOrderItem] = useState({});
     const [validated, setValidated] = useState(false);
+    const [modalShow, setModalShow] = useState(false);
     const products = useSelector( (state) =>  state.cart.products);
     const totalAmount = useSelector(state => state.cart.productsTotalAmount);
     const totalQuantity = useSelector(state => state.cart.productsTotalQuantity);
@@ -31,6 +34,7 @@ const Checkout = () => {
           event.preventDefault();
           event.stopPropagation();
         }
+        event.preventDefault();
         submitOrderHandle()
         setValidated(true);
       };
@@ -65,7 +69,7 @@ const Checkout = () => {
         makeRequest('order/orderItem', settings)
         .then((data) => {
             setPostDataToOrderItem(data)
-
+            setModalShow(true)  
             
         })
         .catch((error) => console.error('Error fetching order item data:', error));
@@ -88,7 +92,6 @@ const Checkout = () => {
       useEffect(() => {
         if (createdOrderId){
             addproductItemToOrderItem()
-            console.log("the order is done")
         }
       // eslint-disable-next-line react-hooks/exhaustive-deps
       }, [createdOrderId]);
@@ -146,9 +149,44 @@ const Checkout = () => {
                     </div>
                 </div>   
     });
+    const displayProductsInConfirmModal = products.map((product) =>{
+        return <div  key={product.id}>
+                    <p>{product.title}</p>
+                </div>   
+    });
 
   return (
     <>
+    <Modal size="lg" aria-labelledby="contained-modal-title-vcenter" centered 
+    show={modalShow} >
+      <Modal.Body>
+        <h4 className='item-title'>Kære {postDataToOrder.customerName} </h4>
+        <h4 className='item-title'>Din bestilling er Bekræftet. </h4>
+        <p className='item-description'>
+          <br/>
+          Bestilling nr: {postDataToOrder.orderNumber}<br/>
+          Tlf: {postDataToOrder.customerTlf}<br/>
+          Email: {postDataToOrder.customerEmail}<br/>
+          Adresse: {postDataToOrder.address}, {postDataToOrder.zipCode}  {postDataToOrder.city}<br/>
+          <hr/>
+          Du har bestilt:
+          {displayProductsInConfirmModal}
+          <hr/>
+          Vi vil Kontakt dig inden for 24 timer.<br/>
+          Hvis du har spørgsmål, kan du kontakte os på 28 19 96 97<br/>
+          eller send en mail til Ramo@ramo-ms.dk <br/>
+          Fortsæt en god dag.<br/>
+          Mvh Ramo MultiService<br/>
+        </p>
+      </Modal.Body>
+      <Modal.Footer>
+        
+        <Link to='/'>
+          <button type="button" onClick={()=> {dispatch(resetCart())
+            setModalShow(false)}} className="add-order-btn btn btn-outline-success">Luk</button>
+        </Link>
+      </Modal.Footer>
+    </Modal>
     <div className="row">
         <div className="col-60">
             <div className="checkout-container container">
