@@ -5,10 +5,12 @@ import { useEffect, useState } from 'react';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import { useSelector , useDispatch} from 'react-redux';
 import {removeFromCart, resetCart, incrementQuantity,
-     decrementQuantity,getTotalProducts} from '../../../redux/cartReducer'
+     decrementQuantity,getTotalProducts} from '../../../redux/cartReducer';
+import Modal from 'react-bootstrap/Modal';
 
 const Cart = () => {
     const [show, setShow] = useState(false);
+    const [modalShow, setModalShow] = useState(false);
     const handleClose = () => setShow(false);
     const toggleShow = () => setShow((s) => !s);
     const dispatch = useDispatch()
@@ -27,6 +29,17 @@ const Cart = () => {
     const displayProductsInCart = products.map(product =>{
         
         return <div className='offcanvas-order-body' key={product.id}>
+                    <Modal size="lg" aria-labelledby="contained-modal-title-vcenter" centered 
+                    show={modalShow} onHide={()=>setModalShow(false)}>
+                        <Modal.Body>
+                            <h4 className='item-title'>Er du sikker på du vil fjerne produktet fra din kurv?</h4>
+                        </Modal.Body>
+                        <Modal.Footer>
+                            <button type="button" onClick={()=>setModalShow(false)} className="add-order-btn btn btn-outline-success">Nej Tak</button>
+                            <button type="button" onClick={()=>{ dispatch(removeFromCart({id: product.id,}))
+                                setModalShow(false)}} className="delete-order-btn btn btn-outline-success">Ja Tak, fjern produktet </button>
+                        </Modal.Footer>
+                    </Modal>
                     <div className='offcanvas-body-top'>
                         <img alt='' src={product.image}/>
                         <p>{product.title}</p>
@@ -41,14 +54,12 @@ const Cart = () => {
                             }))}
                             >+</button>
                             <p className='qantity'>{product.quantity}</p>
-                            <button className='qantity-btn' onClick={() => dispatch(product.quantity > 1 ? decrementQuantity({
+                            <button className='qantity-btn' onClick={() => product.quantity > 1 ?dispatch( decrementQuantity({
                                 id: product.id,
                                 quantity: product.quantity,
                                 price: product.price,
                                 totalPrice: product.totalPrice,
-                            }): removeFromCart({
-                                id: product.id
-                            }))}
+                            })):setModalShow(true) }
                             >-</button>
                         </div>
                         <p className='offcanvas-price' >{product.totalPrice} kr.</p>
@@ -59,6 +70,7 @@ const Cart = () => {
     
   return (
     <>
+   
     <div className="cart-icon " onClick={toggleShow} ><GiShoppingCart /></div>
     
     <div className='cart-badge' >{totalQuantity}</div>

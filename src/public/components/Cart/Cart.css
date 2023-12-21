@@ -112,3 +112,11 @@
     color: red;
     border-bottom: 1px solid red;
 }
+
+.delete-order-btn{
+    color: red;
+    border: 1px solid red;
+}
+.delete-order-btn:hover, .delete-order-btn:focus, .delete-order-btn:active{
+    background-color: red;
+}

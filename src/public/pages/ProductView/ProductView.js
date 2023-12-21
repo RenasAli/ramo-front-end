@@ -4,10 +4,13 @@ import makeRequest from '../../../data/fetch'
 import { useParams} from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import {addToCart} from '../../../redux/cartReducer'
+import Modal from 'react-bootstrap/Modal';
+import {Link} from 'react-router-dom';
 
 const ProductView = () => {
     const {productNumber} = useParams()
     const [mainImage, setMainImage] = useState();
+    const [modalShow, setModalShow] = useState(false);
     const [activeTab, setActiveTab] = useState('pruduct-details');
     const [quantity, setQuantity] = useState(1);
     const [subImage, setSubImage] = useState([]);
@@ -54,6 +57,22 @@ const ProductView = () => {
     
   return (
     <>
+    <Modal size="lg" aria-labelledby="contained-modal-title-vcenter" centered 
+    show={modalShow} onHide={()=>setModalShow(false)}>
+
+      <Modal.Body>
+        <h4 className='item-title'>Productet er tilføjet til kassen </h4>
+        <p className='item-description'>
+          Vil du fortsætte med at handle eller gå til kassen?
+        </p>
+      </Modal.Body>
+      <Modal.Footer>
+        <button type="button" onClick={()=>setModalShow(false)} className="add-order-btn btn btn-outline-success">Fortsæt med at handle</button>
+        <Link to='/checkout'>
+          <button type="button" onClick={()=>setModalShow(false)} className="add-order-btn btn btn-outline-success">Gå til kassen</button>
+        </Link>
+      </Modal.Footer>
+    </Modal>
     <div className='product-view'>
         <div className='left'>
             <div className='main_image'>
@@ -72,7 +91,7 @@ const ProductView = () => {
             <div>
                 <input defaultValue={quantity} type="number" className='order-quantity-input' onChange={(e) => setQuantity(e.target.value)} />
                 <button type="button" className="add-order-btn btn btn-outline-success"
-                onClick={()=>dispatch(addToCart({
+                onClick={()=> {dispatch(addToCart({
                   id: data.id,
                   title: data.name,
                   image: data.img,
@@ -80,7 +99,9 @@ const ProductView = () => {
                   price: data.price,
                   quantity: quantity,
                   totalPrice: data.price * quantity
-                }))} >Køb</button>
+                }))
+                setModalShow(true)
+                } }>Køb</button>
             </div>
         </div>
     </div>
