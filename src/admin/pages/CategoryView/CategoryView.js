@@ -63,7 +63,7 @@ const CategoryView = () => {
             
         <label ><i className="fa fa-user"></i> Kategory billede Link</label>
         <input type="text" className='checkout-input' defaultValue={data.categoryImg !== null ? data.categoryImg: ""}  onChange={(e) => setEditCategory({ ...editCategory, categoryImg: e.target.value})}/>
-        <img alt='' src={data.categoryImg}/>
+        <img className='viewImage' alt='' src={data.categoryImg}/>
             
     </div>
     <button type="submit" onClick={EditCategoryHandle} className="checkout-submit-btn btn" > Gem ændring</button>

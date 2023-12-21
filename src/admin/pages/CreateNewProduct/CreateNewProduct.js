@@ -5,11 +5,13 @@ import { storage } from '../../../data/firebase';
 import {Option} from '../../components/index'
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { v4 } from 'uuid';
+import { useNavigate } from 'react-router-dom';
 
 const CreateNewProduct = (props) => {
     const [postData, setPostData] = useState({});
     const [image, setImage] = useState(null);
     const [categoryData, setCategoryData] = useState([]);
+    const navigate = useNavigate();
 
 
     const handleChange = (e) => {
@@ -47,8 +49,8 @@ const CreateNewProduct = (props) => {
         };
         makeRequest('category/products', settings)
         .then((data) => {
-            setPostData(data)
-            window.location.reload()
+            setPostData(data);
+            navigate(`/products/${data.productId}`)
         })
         .catch((error) => console.error('Error fetching data:', error));
         

@@ -235,10 +235,8 @@ const Checkout = () => {
                 <div className='cart-orders-end-content'>
                     <p className='cart-orders-total'>Total DKK</p>
                     <p className='cart-orders-total'>{totalAmount} kr.</p>
-                </div>
-                
+                </div>              
             </div>
-
             </div>
         </div>
     </div>

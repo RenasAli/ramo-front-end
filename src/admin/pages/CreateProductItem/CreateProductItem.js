@@ -5,10 +5,13 @@ import { storage } from '../../../data/firebase';
 import {Option} from '../../components/index'
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { v4 } from 'uuid';
+import { useNavigate } from 'react-router-dom';
+
 const CreateProductItem = () => {
     const [postData, setPostData] = useState({});
     const [image, setImage] = useState(null);
     const [ProductData, setProductData] = useState([]);
+    const navigate = useNavigate();
 
     const handleChange = (e) => {
         if (e.target.files[0]) {
@@ -48,7 +51,7 @@ const CreateProductItem = () => {
         makeRequest('category/products/items', settings)
         .then((data) => {
             setPostData(data)
-            window.location.reload()
+            navigate(`/products/items/view/${data.productItemNumber}`)
         })
         .catch((error) => console.error('Error fetching data:', error));
         

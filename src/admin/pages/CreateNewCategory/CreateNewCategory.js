@@ -4,14 +4,15 @@ import makeRequest from '../../../data/fetch'
 import { storage } from '../../../data/firebase';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { v4 } from 'uuid';
+import { useNavigate } from 'react-router-dom';
 
 
 
 const CreateNewCategory = () => {
-    const [postData, setPostData] = useState({ 
-    
-    });
+    const [postData, setPostData] = useState({});
     const [image, setImage] = useState(null);
+    const navigate = useNavigate();
+
 
     const handleChange = (e) => {
         if (e.target.files[0]) {
@@ -51,19 +52,14 @@ const CreateNewCategory = () => {
         makeRequest('category', settings)
         .then((data) => {
             setPostData(data)
-            window.location.reload()
+            navigate(`/category/${data.categoryId}`)
         })
         .catch((error) => console.error('Error fetching data:', error));
-        
     }
-
-
-
-
-
 
   return (
    <>
+   
     <div className="col-md-6">
         <label htmlFor="inputtitle" className="form-label">Kategori Titel</label>
         <input type="text" className="form-control" onChange={(e) => setPostData({ ...postData, categoryName: e.target.value })}/>
