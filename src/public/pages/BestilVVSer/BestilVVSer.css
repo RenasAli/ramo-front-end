@@ -1,7 +1,15 @@
+.col-60{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .order-plumber-container{
     width: 60%;
-    margin-left:20%;
-    margin-right:20%;
+    
+}
+.order-plumber-info-container{
+    width: 90%;
+    
 }
 
 @media(max-width:991px){

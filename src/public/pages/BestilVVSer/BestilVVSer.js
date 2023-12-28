@@ -41,6 +41,7 @@ const BestilVVSer = () => {
 
   return (
     <>
+    
     <Modal size="lg" aria-labelledby="contained-modal-title-vcenter" centered 
     show={modalShow} >
       <Modal.Body>
@@ -67,6 +68,20 @@ const BestilVVSer = () => {
         </Link>
       </Modal.Footer>
     </Modal>
+    <div className="col-60">
+      <div className="checkout-container order-plumber-info-container">
+        <h4>Bestil en VVS-Montør på Timepris</h4>
+        <p>Har du et stoppet afløb, utætte vandrør eller skal du have udskiftet sanitet?<br/> Uanset opgavens størrelse står vores dygtige VVS-montører klar til at løse den for dig.<br/> Bestil en VVS-montør på timepris og få ro i maven.</p>
+        <h6>Vores priser:</h6>
+        <li>Booking af en VVS-montør i 1 time: 1.150 kr. (inkl. kørsel og opstartsgebyr).</li>
+        <li>Booking af en VVS-montør i mere end 1 time: 795 kr. pr. time + opstartsgebyr (inkl. kørsel).</li>
+        <h6>Fast priser:</h6>
+        <p>
+        Når du bestiller en VVS-montør på timepris, får du altid en fast pris for din opgave.<br/> Prisen afhænger af, hvor mange timer du ønsker at booke.
+        </p>
+        <h6>Udfyld blot bestillingsformularen nedenfor, og lad os hjælpe dig med dit VVS-arbejde.</h6>
+      </div>
+      </div>
       <Form onSubmit={handleSubmit} validated={validated} noValidate >
         <div className="col-60">
             <div className="checkout-container order-plumber-container">
@@ -118,7 +133,6 @@ const BestilVVSer = () => {
             </div>
         </div>
       </Form>
-    
     </>
   )
 }
