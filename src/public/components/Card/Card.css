@@ -19,6 +19,10 @@
     .card-bg{
         width: 350px;
     }
+    .group-card-bg{
+        width: 350px;
+        margin: calc(var(--size-primary)/8);
+    }
     
 }
 

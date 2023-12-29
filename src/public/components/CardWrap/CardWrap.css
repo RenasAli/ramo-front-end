@@ -2,6 +2,14 @@
     margin-top: var(--size-primary);
     padding: var(--size-primary);
 }
+@media(max-width: 767px){
+    
+    .card-wrapper-bg{
+        
+        padding: 0;
+    }
+    
+}
 
 .card-wrapper-items{
     display: flex ;

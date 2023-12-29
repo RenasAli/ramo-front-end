@@ -21,7 +21,6 @@ const LogIn = () => {
     };
      makeRequest('user/login', settings)
     .then(async (data) => {
-        setPostData(await data)
         localStorage.setItem( 'token', await data.token)
         navigate('/')
     })

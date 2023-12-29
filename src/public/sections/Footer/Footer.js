@@ -21,8 +21,8 @@ const Footer = () => {
 
           <Col>
             <p className='footer-col-header'>Kontak Os</p>
-            <p> Tlf: 28 19 96 97</p>
-            <p> Email: ramo@ramomultiservice.dk</p>
+            <p> Tlf: +45 28 19 96 97</p>
+            <p> Email: ramo@ramo-ms.dk</p>
             <p> CVR: 42 79 70 81</p>
           </Col>
 
@@ -36,6 +36,9 @@ const Footer = () => {
             </Link>
             <Link  className='footer-link' alt="" to='/checkout'>
                 <p >Indkøbskurv</p>
+            </Link>
+            <Link  className='footer-link' alt="" to='/om-os'>
+                <p >Om Os</p>
             </Link>
           
           </Col>

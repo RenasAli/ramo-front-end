@@ -1,0 +1,33 @@
+.about-us-bg{
+    margin-top: 25px;
+    margin-bottom: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+.about-us-logo{
+    height: 100%;
+    width: 60%;
+    
+}
+
+.about-us-content{
+    width: 60%;
+    padding: 20px 20px 15px 20px;
+    border: 1px solid lightgrey;
+    border-radius: 3px;
+    color: var(--color-primary);
+    background-color: #F8F8F8;
+}
+
+
+@media(max-width:991px){
+    .about-us-header{
+        color: var(--color-primary);
+        font-size: xx-large;
+    }
+    .about-us-content{
+        width: 95%;
+    }
+}

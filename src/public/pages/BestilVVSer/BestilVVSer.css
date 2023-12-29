@@ -1,7 +1,8 @@
-.col-60{
+.plumber-container{
     display: flex;
     justify-content: center;
     align-items: center;
+    
 }
 .order-plumber-container{
     width: 60%;

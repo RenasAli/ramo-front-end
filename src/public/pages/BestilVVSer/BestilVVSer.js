@@ -68,7 +68,7 @@ const BestilVVSer = () => {
         </Link>
       </Modal.Footer>
     </Modal>
-    <div className="col-60">
+    <div className="col-60 plumber-container">
       <div className="checkout-container order-plumber-info-container">
         <h4>Bestil en VVS-Montør på Timepris</h4>
         <p>Har du et stoppet afløb, utætte vandrør eller skal du have udskiftet sanitet?<br/> Uanset opgavens størrelse står vores dygtige VVS-montører klar til at løse den for dig.<br/> Bestil en VVS-montør på timepris og få ro i maven.</p>
@@ -83,7 +83,7 @@ const BestilVVSer = () => {
       </div>
       </div>
       <Form onSubmit={handleSubmit} validated={validated} noValidate >
-        <div className="col-60">
+        <div className="col-60 plumber-container" >
             <div className="checkout-container order-plumber-container">
                 <div className="row">
                 <div className="col-50">
