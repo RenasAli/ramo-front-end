@@ -20,7 +20,7 @@ const Swiper = () => {
   }, []);
 
   const swiperCardData = data.map(category =>{
-    return <SwipCards key={category.categoryId} url={`/shop/${category.categoryUrl}`} img={category.categoryImg} dataToSend={category.categoryName}/>
+    return <SwipCards key={category.categoryId} url={`${category.categoryUrl}`} img={category.categoryImg} dataToSend={category.categoryName}/>
   })
 
   const settings = {

@@ -28,6 +28,19 @@
 .search-bar-input:focus-visible {
     outline:none;
 }
+.search-found-item-link{
+    text-decoration: none;
+    color: var(--color-primary);
+}
+
+.search-found-item-link:hover{
+    color: var(--color-secondary);
+}
+
+.search-found-list{
+    max-height: 300px;
+    overflow-y: scroll;
+}
 
 .search-found-list{
     background-color: var(--color-white);

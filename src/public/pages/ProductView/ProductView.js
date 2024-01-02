@@ -24,7 +24,7 @@ const ProductView = () => {
         makeRequest(`category/products/items/productItemNumber/${productNumber}`, settings)
           .then((data) => {
             setMainImage(data.img)
-            setSubImage(data.subimages)
+            setSubImage(data.subImages)
             setData(data)
         })
           .catch((error) => console.error('Error fetching data:', error));

@@ -16,7 +16,8 @@ const Products = () => {
   };
     makeRequest('category', settings)
       .then((data) => {
-        const filteredData = data.filter(item => item.categoryUrl === `/${categoryUrl}`);
+        
+        const filteredData = data.filter(item => item.categoryUrl === `shop/${categoryUrl}`);
         const products = filteredData.reduce((acc, curr) => acc.concat(curr.products), []);
         const categoryName = filteredData.reduce((acc, curr) => acc.concat(curr.categoryName), []);
         const categoryDescription = filteredData.reduce((acc, curr) => acc.concat(curr.categoryDescription), []);
@@ -28,9 +29,10 @@ const Products = () => {
   }, [categoryUrl]);
 
   const productCards = data.map(product =>{
-  return <GroupCard key={product.productId} title={product.productName} url={`${product.productUrl}`} img={product.productImg}/>
+    
+  return <GroupCard key={product.productId} title={product.productName} url={product.productUrl} img={product.productImg}/>
   })
-  
+
   return (
     <>
      <div className='product-content-info' >

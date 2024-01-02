@@ -112,13 +112,10 @@ const CreateProductItem = () => {
             <label htmlFor="inputCategoryDescription" className="form-label">Beskrivelse</label>
             <textarea className="form-control"  rows='9' onChange={(e) => setPostData({ ...postData, description: e.target.value })} />
         </div>
+        
         <div className="col-md-8">
             <label htmlFor="inputCategoryDescription" className="form-label">Info</label>
             <textarea className="form-control"  rows='9' onChange={(e) => setPostData({ ...postData, info: e.target.value })} />
-        </div>
-        <div className="col-md-6">
-            <label htmlFor="basic-url" className="form-label">URL</label>
-            <input type="text" className="form-control"   onChange={(e) => setPostData({ ...postData, url: e.target.value })}/>
         </div>
         <div className="col-md-6">
             <label htmlFor="basic-file" className="form-label">Produkt Navn</label>

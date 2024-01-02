@@ -11,11 +11,12 @@ import qs from 'qs'
 import './Product.css'
 
 const Product = () => {
-  const {productUrl} = useParams();
+  const {productUrl, categoryUrl} = useParams();
   const [data, setData] = useState([]);
   const [productItem, setProductItem] = useState([]);
   const [productName, setProductName] = useState();
   const [productId, setProductId] = useState();
+  const [productDescription, setProductDescription] = useState();
   const [selectedCheckbox, setSelectedCheckbox] = useState([]);
   const [accordionColorItems, setAccordionColorItems] = useState({});
   const [accordionBrandItems, setAccordionBrandItems] = useState({});
@@ -39,11 +40,13 @@ const Product = () => {
       return acc;
     }, {});
     const query = qs.stringify(groupedData ,{ arrayFormat: 'comma' });
-    makeRequest(`category/products/items/filter?productId=${productId}&${query}`, settings)
-      .then((productItem) => {
-        setProductItem(productItem)
-      })
-      .catch((error) => console.error('Error fetching data 1:', error));
+    if(productId != null){
+      makeRequest(`category/products/items/filter?productId=${productId}&${query}`, settings)
+        .then((productItem) => {
+          setProductItem(productItem)
+        })
+        .catch((error) => console.error('Error fetching data 1:', error));
+    }
   }, [selectedCheckbox,productId]);
 
   useEffect(() => {
@@ -52,16 +55,19 @@ const Product = () => {
     };
     makeRequest(`category/products`, settings)
       .then((data) => {
-        const filteredData = data.filter(item => item.productUrl === productUrl);
+        
+        const filteredData = data.filter(item => item.productUrl === "shop/" + categoryUrl + "/" + productUrl);
         const productItems = filteredData.reduce((acc, curr) => acc.concat(curr.productItems), []);
         const productName = filteredData.reduce((acc, curr) => acc.concat(curr.productName), []);
+        const productDescription = filteredData.reduce((acc, curr) => acc.concat(curr.productDescription), []);
         const productId = filteredData.reduce((acc, curr) => acc.concat(curr.productId), []);
+        setProductDescription(productDescription)
         setProductName(productName)
         setProductId(productId)
         setData(productItems)
       })
       .catch((error) => console.error('Error fetching data 2:', error));
-  }, [productUrl]);
+  }, [productUrl,categoryUrl]);
 
 
 
@@ -162,7 +168,7 @@ const Product = () => {
     <div className='product-content-info' >
       <p className='product-content-header'>{productName}  </p>
       <span className='product-total'>({productItem.length} Resultater)</span>
-      <p>Opdag vores brede udvalg af toiletter i de nyeste designs med moderne smarte funktioner og lækre detaljer. Vi tilbyder toiletter fra nogle af de største brands på markedet, og der kommer løbende nye modeller til</p>
+      <p>{productDescription}</p>
     </div>
     
     

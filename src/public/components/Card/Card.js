@@ -43,13 +43,15 @@ const Card = (props) => {
 
 
 const GroupCard = (props) => {
+  
   return (
     <>
     <div className='group-card-item'>
      <div className='group-card-bg'  >
-       <img className='group-card-img' alt='' src={props.img} />
+       <img className='group-card-img' alt='' src={ props.img} />
        <div className='group-card-content' >
-            <Link  className='group-card-link' alt="" to={props.url}>
+            <Link  className='group-card-link' alt="" to={`/${props.url}`} replace>
+              
                 <h4>{props.title}</h4>
             </Link>
        </div>
