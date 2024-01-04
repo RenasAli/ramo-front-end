@@ -28,7 +28,7 @@ const Home = () => {
 
     setRandomSubset(getRandomSubset(data, 6));
   }, [data]);
-console.log(randomSubset)
+
   const displayProductCards = randomSubset.map(product =>{
     return <GroupCard key={product.productId} title={product.productName} url={`${product.productUrl}`} img={product.productImg}/>
     })

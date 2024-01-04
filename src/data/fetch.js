@@ -1,4 +1,4 @@
-const STANDARD_URL = "http://localhost:8080/api";
+const STANDARD_URL = "http://localhost:8080/app/v1/api";
 
 const makeRequest = async (url, settings) => {
   const response = await fetch(`${STANDARD_URL}/${url}`,settings);
